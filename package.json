@@ -11,8 +11,9 @@
   "devDependencies": {
     "@element-plus/nuxt": "^1.0.4",
     "@nuxtjs/tailwindcss": "^6.6.5",
+    "@volar/vue-language-plugin-pug": "^1.2.0",
     "nuxt": "^3.3.3",
     "pug": "^3.0.2",
-    "pug-plain-loader": "^1.1.0"
+    "sass": "^1.61.0"
   }
 }
