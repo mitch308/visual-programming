@@ -5,7 +5,7 @@ interface Menu {
   path: string;
   icon?: string;
   level: number;
-  children: Menu[] | null;
+  children: Menu[] | undefined;
 }
 
 interface MenuForm {
@@ -14,3 +14,5 @@ interface MenuForm {
   title: string;
   path: string;
 }
+
+type MenuList = Menu[]

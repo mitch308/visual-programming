@@ -1,19 +1,18 @@
 <script setup lang="ts">
-import type { FormInstance, FormRules } from 'element-plus'
+import type { FormInstance, FormRules, CascaderOption } from 'element-plus'
+import { useMenuStore } from '../../store/menu';
 const dictionary = inject<Dictionary>('dictionary') || {}
 
-const props = defineProps<{
-  menuList: []
-}>()
+const menuStore = useMenuStore()
 
-const options = [{title: '无', path: 'NO', level: 0}, ...props.menuList]
+const options = [{title: '无', path: '/', level: 0}, ...menuStore.parentMenuList] as CascaderOption[]
 
 const dialogVisible = ref(false)
 
 
 const formRef = ref<FormInstance>()
 const formData = reactive({
-  parentMenu: 'NO',
+  parentMenu: '/',
   hasSubMenu: '',
   title: '',
   path: ''
@@ -21,21 +20,36 @@ const formData = reactive({
 const ruels = reactive<FormRules>({
   parentMenu: [{required: true, message: '请选择父级菜单'}],
   hasSubMenu: [{required: true, message: '请选择是否有子菜单'}],
-  title: [{required: true, message: '请输入菜单名称'}],
-  path: [{required: true, message: '请输入菜单路径'}]
+  title: [{required: true, message: '请输入菜单路径'}],
+  path: [{
+    required: true,
+    validator (rules, value, callback) {
+      if (!value) return callback('请输入菜单路径')
+      if (!/^[^\/]*$/.test(value)) return callback('菜单路径中不能有斜杠')
+      callback()
+    }
+  }]
 })
+// 打开弹窗
 const openDialog = () => {
   dialogVisible.value = true
-  formRef.value?.clearValidate()
+  formRef.value?.resetFields()
 }
+// 提交表单
 const handleSubmit = () => {
-  console.log(formData)
   formRef.value?.validate(valid => {
     if (!valid) return
     useFetch('/api/menu/addMenu', {
+      method: 'post',
       body: formData
-    }).then(() => {
-      ElMessage.success('新增菜单成功！')
+    }).then(({error}) => {
+      if (error.value) {
+        ElMessage.error(error.value.data.statusMessage)
+      } else {
+        dialogVisible.value = false
+        ElMessage.success('新增菜单成功！')
+        menuStore.refreshMenu()
+      }
     })
   })
 }

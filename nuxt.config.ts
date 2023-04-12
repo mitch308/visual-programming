@@ -4,6 +4,7 @@ export default defineNuxtConfig({
     '@element-plus/nuxt',
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
+    'nuxt-lodash',
   ],
   css: [
     '@/assets/sass/common.sass'

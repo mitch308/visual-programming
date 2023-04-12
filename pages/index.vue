@@ -3,7 +3,7 @@
   el-button(type="primary", @click="goProgramming") 开始
 </template>
 <script lang="ts" setup>
-function goProgramming () {
+const goProgramming = () => {
   navigateTo('/programming')
 }
 </script>

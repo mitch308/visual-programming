@@ -3,7 +3,10 @@ import Header from './Header.vue';
 import LeftAside from './LeftAside.vue';
 import Main from './Main.vue'
 import RightAside from './RightAside.vue'
+import { useMenuStore } from '../../store/menu';
 
+const menuStore = useMenuStore()
+menuStore.refreshMenu()
 </script>
 
 <template lang="pug">
