@@ -2,13 +2,7 @@
 // import { icons } from '@element-plus/icons-vue/global'
 import SubMenuList from './SubMenuList.vue'
 defineProps<{
-  menuList?: Array<{
-    title: string
-    path: string,
-    icon?: string,
-    level: number,
-    children?: []
-  }>
+  menuList?: Array<Menu>
 }>()
 </script>
 

@@ -3,6 +3,7 @@ import Header from './Header.vue';
 import LeftAside from './LeftAside.vue';
 import Main from './Main.vue'
 import RightAside from './RightAside.vue'
+
 </script>
 
 <template lang="pug">

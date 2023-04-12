@@ -1,9 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  ssr: true,
   modules: [
     '@element-plus/nuxt',
-    '@nuxtjs/tailwindcss'
+    '@nuxtjs/tailwindcss',
+    '@pinia/nuxt',
   ],
   css: [
     '@/assets/sass/common.sass'

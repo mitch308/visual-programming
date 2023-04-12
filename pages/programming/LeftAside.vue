@@ -5,8 +5,8 @@
     el-icon(size="14")
       Plus
   el-menu.flex-1
-    SubMenuList(:menu-list="pageList")
-MenuDialog(ref="menuDialogRef")
+    SubMenuList(:menu-list="menuList")
+MenuDialog(ref="menuDialogRef", @success="addMenuSuccess", :menu-list="menuList")
 </template>
 
 <script setup lang="ts">
@@ -14,12 +14,15 @@ import SubMenuList from './SubMenuList.vue';
 import MenuDialog from './MenuDialog.vue';
 
 // 获取菜单列表
-const {data: pageList, refresh: refreshPageList} = await useFetch('/api/pages/getList')
+const {data: menuList, refresh: refreshMenuList} = await useFetch('/api/menu/getMenuList')
 
 const menuDialogRef = ref<InstanceType<typeof MenuDialog> | null>(null)
 // 新增菜单
 const addMenu = () => {
   menuDialogRef.value?.openDialog()
+}
+const addMenuSuccess = () => {
+  refreshMenuList()
 }
 </script>
 
