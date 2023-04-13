@@ -14,15 +14,30 @@ const getParentMenu = function (menuList: MenuList) {
   })
 }
 
+// 通过文件路径查找菜单信息
+const getMenuByFilePath = function (filePath: string, menuList: MenuList): Menu | null  {
+  for (let menu of menuList) {
+    if (menu.filePath === filePath) return menu
+    if (menu.children) {
+      const res = getMenuByFilePath(filePath, menu.children)
+      if (res) return res
+    }
+  }
+  return null
+}
+
 export const useMenuStore = defineStore('menu', {
   state: () => ({
     menuList: [] as MenuList,
-    currentMenu: null as Menu | null
+    currentFilePath: '' as string
   }),
   getters: {
     parentMenuList (state) {
       const parentMenuList = getParentMenu(state.menuList)
       return parentMenuList
+    },
+    currentMenu (state) {
+      return getMenuByFilePath(state.currentFilePath, state.menuList)
     }
   },
   actions: {

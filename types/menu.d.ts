@@ -3,13 +3,14 @@ declare module 'menu' {}
 interface Menu {
   title: string;
   path: string;
+  filePath: string;
   icon?: string;
   level: number;
   children: Menu[] | undefined;
 }
 
 interface MenuForm {
-  parentMenu: string;
+  paths: string[];
   hasSubMenu: 'YES' | 'NO' | '';
   title: string;
   path: string;

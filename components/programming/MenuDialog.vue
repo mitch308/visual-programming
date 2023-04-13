@@ -5,20 +5,20 @@ const dictionary = inject<Dictionary>('dictionary') || {}
 
 const menuStore = useMenuStore()
 
-const options = [{title: '无', path: '/', level: 0}, ...menuStore.parentMenuList] as CascaderOption[]
+const options = [{title: '无', path: '', level: 0}, ...menuStore.parentMenuList] as CascaderOption[]
 
 const dialogVisible = ref(false)
 
 
 const formRef = ref<FormInstance>()
-const formData = reactive({
-  parentMenu: '/',
+const formData: MenuForm = reactive({
+  paths: [''],
   hasSubMenu: '',
   title: '',
   path: ''
 })
 const ruels = reactive<FormRules>({
-  parentMenu: [{required: true, message: '请选择父级菜单'}],
+  paths: [{required: true, type: 'array', message: '请选择父级菜单'}],
   hasSubMenu: [{required: true, message: '请选择是否有子菜单'}],
   title: [{required: true, message: '请输入菜单路径'}],
   path: [{
@@ -37,14 +37,15 @@ const openDialog = () => {
 }
 // 提交表单
 const handleSubmit = () => {
+  console.log(1111)
   formRef.value?.validate(valid => {
     if (!valid) return
     useFetch('/api/menu/addMenu', {
       method: 'post',
-      body: formData
+      body: JSON.stringify(formData)
     }).then(({error}) => {
       if (error.value) {
-        ElMessage.error(error.value.data.statusMessage)
+        ElMessage.error(error.value.data.message)
       } else {
         dialogVisible.value = false
         ElMessage.success('新增菜单成功！')
@@ -61,8 +62,8 @@ defineExpose({
 <template lang="pug">
 el-dialog(title="新增菜单", v-model="dialogVisible", width="400px")
   el-form(ref="formRef", :rules="ruels", :model="formData", label-width="130px")
-    el-form-item(label="父级菜单", prop="parentMenu")
-      el-cascader(:options="options", :props="{label: 'title', value: 'path', emitPath: false, checkStrictly: true}", v-model="formData.parentMenu")
+    el-form-item(label="父级菜单", prop="paths")
+      el-cascader(:options="options", :props="{label: 'title', value: 'path', checkStrictly: true}", v-model="formData.paths")
     el-form-item(label="是否有子菜单", prop="hasSubMenu")
       el-select(v-model="formData.hasSubMenu")
         el-option(v-for="item in dictionary.yesOrNo", :label="item.label", :value="item.value")

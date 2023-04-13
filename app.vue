@@ -11,7 +11,8 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 const {data: dictionary} = await useFetch('/api/dictionary/getDictionary')
 provide('dictionary', dictionary)
 </script>
+
 <template lang="pug">
-el-config-provider(:locale="locale")
+el-config-provider(:locale="locale", size="small")
   NuxtPage
 </template>

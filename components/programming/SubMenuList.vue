@@ -8,7 +8,7 @@ defineProps<{
 
 const menuStore = useMenuStore()
 const handleSelectMenu = (menu: Menu) => {
-  menuStore.currentMenu = menu
+  menuStore.currentFilePath = menu.filePath
 }
 </script>
 

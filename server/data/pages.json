@@ -1,1 +1,1 @@
-[{"path":"/index.json","title":"首页","level":1,"icon":""},{"path":"/menu1","title":"一级菜单1","level":1,"icon":"","children":[{"path":"/menu1/menu1-1.json","title":"二级菜单1","level":2}]},{"title":"一级菜单1","path":"/menu2.json","level":1,"children":[]}]
+[{"title":"首页","path":"index","filePath":"/Users/hongchengcheng/workspace/visual-programming/server/data/pages/index.json","level":1}]

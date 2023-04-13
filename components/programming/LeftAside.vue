@@ -5,17 +5,15 @@
     el-icon(size="14")
       Plus
   el-menu.flex-1
-    SubMenuList(:menu-list="menuStore.menuList")
-MenuDialog(ref="menuDialogRef")
+    ProgrammingSubMenuList(:menu-list="menuStore.menuList")
+ProgrammingMenuDialog(ref="menuDialogRef")
 </template>
 
 <script setup lang="ts">
-import SubMenuList from './SubMenuList.vue';
 import MenuDialog from './MenuDialog.vue';
 import { useMenuStore } from '../../store/menuStore';
 
 const menuStore = useMenuStore()
-
 const menuDialogRef = ref<InstanceType<typeof MenuDialog> | null>(null)
 // 新增菜单
 const addMenu = () => {
