@@ -1,3 +1,3 @@
 <template lang="pug">
-.right-aside.w-50
+.header.h-12.border-b
 </template>

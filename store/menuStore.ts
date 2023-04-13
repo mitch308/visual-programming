@@ -16,7 +16,8 @@ const getParentMenu = function (menuList: MenuList) {
 
 export const useMenuStore = defineStore('menu', {
   state: () => ({
-    menuList: [] as MenuList
+    menuList: [] as MenuList,
+    currentMenu: null as Menu | null
   }),
   getters: {
     parentMenuList (state) {

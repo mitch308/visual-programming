@@ -12,7 +12,7 @@ MenuDialog(ref="menuDialogRef")
 <script setup lang="ts">
 import SubMenuList from './SubMenuList.vue';
 import MenuDialog from './MenuDialog.vue';
-import { useMenuStore } from '../../store/menu';
+import { useMenuStore } from '../../store/menuStore';
 
 const menuStore = useMenuStore()
 

@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import Header from './Header.vue';
-import LeftAside from './LeftAside.vue';
-import Main from './Main.vue'
-import RightAside from './RightAside.vue'
-import { useMenuStore } from '../../store/menu';
+import Header from '../../components/programming/Header.vue';
+import LeftAside from '../../components/programming/LeftAside.vue';
+import Main from '../../components/programming/Main.vue'
+import RightAside from '../../components/programming/RightAside.vue'
+import { useMenuStore } from '../../store/menuStore';
 
 const menuStore = useMenuStore()
 menuStore.refreshMenu()
 </script>
 
 <template lang="pug">
-.flex.flex-row.h-full
+.flex.flex-col.h-full
   Header
   .flex.flex-auto
     LeftAside

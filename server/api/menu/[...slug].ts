@@ -2,8 +2,9 @@ import { createRouter, defineEventHandler, useBase } from 'h3'
 import fs from 'fs'
 import path from 'path'
 
-const pageDataDirPath = './server/data'
-const pagesDataFilePath = path.resolve(pageDataDirPath, 'pages.json')
+const pageDataDir = './server/data'
+const pagesDataFilePath = path.resolve(pageDataDir, 'pages.json')
+const pagesFilesDir = path.resolve(pageDataDir, 'pages')
 
 const router = createRouter()
 
@@ -65,7 +66,7 @@ router.post('/addMenu', defineEventHandler(async (event) => {
   parentMenu.children?.push(menu)
   fs.writeFileSync(pagesDataFilePath, JSON.stringify(menuList))
   if (data.hasSubMenu === 'NO') {
-    fs.writeFileSync(path.resolve(pageDataDirPath, filePath.substring(1)), JSON.stringify({
+    fs.writeFileSync(path.resolve(pagesFilesDir, filePath.substring(1)), JSON.stringify({
       title: menu.title,
       path: menu.path,
       level: menu.level

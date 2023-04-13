@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { FormInstance, FormRules, CascaderOption } from 'element-plus'
-import { useMenuStore } from '../../store/menu';
+import { useMenuStore } from '../../store/menuStore';
 const dictionary = inject<Dictionary>('dictionary') || {}
 
 const menuStore = useMenuStore()
