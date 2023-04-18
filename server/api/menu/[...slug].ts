@@ -84,4 +84,9 @@ router.post('/addMenu', defineEventHandler(async (event) => {
   return menuList
 }))
 
+// 更新菜单信息
+router.post('/updateMenu', defineEventHandler(async event => {
+  const data = await readBody(event)
+}))
+
 export default useBase('/api/menu', router.handler)

@@ -20,7 +20,7 @@ const formData: MenuForm = reactive({
 const ruels = reactive<FormRules>({
   paths: [{required: true, type: 'array', message: '请选择父级菜单'}],
   hasSubMenu: [{required: true, message: '请选择是否有子菜单'}],
-  title: [{required: true, message: '请输入菜单路径'}],
+  title: [{required: true, message: '请输入菜单标题'}],
   path: [{
     required: true,
     validator (rules, value, callback) {
